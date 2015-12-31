@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
 
-namespace PrismTest
+namespace PrismTest.Extensions
 {
     public static class StoryboardExtensions
     {

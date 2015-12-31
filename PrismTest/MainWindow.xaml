@@ -15,7 +15,9 @@
         <controls:AnimatedContentControl prism:RegionManager.RegionName="DrawerRegion"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Stretch"
-                        VerticalContentAlignment="Stretch">
+                        VerticalContentAlignment="Stretch"
+                        AddedStoryboard="{StaticResource OpenDrawerAnimation}"
+                        RemovedStoryboard="{StaticResource CloseDrawerAnimation}">
             <controls:AnimatedContentControl.LayoutTransform>
                 <ScaleTransform />
             </controls:AnimatedContentControl.LayoutTransform>

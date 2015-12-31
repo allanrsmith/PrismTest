@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using PrismTest.Extensions;
 
 namespace PrismTest.Controls
 {
@@ -11,6 +11,30 @@ namespace PrismTest.Controls
         public AnimatedContentControl()
         {
             DefaultStyleKey = typeof(AnimatedContentControl);
+        }
+
+        public static readonly DependencyProperty RemovedStoryboardProperty =
+        DependencyProperty.Register("RemovedStoryboard",
+            typeof(Storyboard),
+            typeof(AnimatedContentControl),
+            new UIPropertyMetadata(null));
+
+        public Storyboard RemovedStoryboard
+        {
+            get { return (Storyboard)GetValue(RemovedStoryboardProperty); }
+            set { SetValue(RemovedStoryboardProperty, value); }
+        }
+
+        public static readonly DependencyProperty AddedStoryboardProperty =
+        DependencyProperty.Register("AddedStoryboard",
+            typeof(Storyboard),
+            typeof(AnimatedContentControl),
+            new UIPropertyMetadata(null));
+
+        public Storyboard AddedStoryboard
+        {
+            get { return (Storyboard)GetValue(AddedStoryboardProperty); }
+            set { SetValue(AddedStoryboardProperty, value); }
         }
 
         ContentControl _old;
@@ -41,7 +65,7 @@ namespace PrismTest.Controls
             {
                 _old.Content = oldContent;
 
-                oldAnimation = CollapseAsync(_old);
+                oldAnimation = RemovedAnimationAsync();
                 await oldAnimation;
                 _old.Visibility = Visibility.Collapsed;
             }
@@ -49,40 +73,30 @@ namespace PrismTest.Controls
             if (newContent != null)
             {
                 _current.Content = newContent;
-                await ExpandAsync(_current);
+                await AddedAnimationAsync();
             }
         }
 
-        private Task CollapseAsync(DependencyObject element)
+        private Task RemovedAnimationAsync()
         {
-            DoubleAnimation animation = new DoubleAnimation(1.0, 0.0, new Duration(TimeSpan.FromMilliseconds(400.0)))
+            if (RemovedStoryboard != null)
             {
-                EasingFunction = new BackEase { EasingMode = EasingMode.EaseIn, Amplitude = 0.3 }
-            };
-
-            Storyboard collapseDrawerItem = new Storyboard();
-            Storyboard.SetTarget(animation, this);
-            Storyboard.SetTargetProperty(animation, new PropertyPath("LayoutTransform.(ScaleTransform.ScaleX)"));
-            collapseDrawerItem.Children.Add(animation);
-            collapseDrawerItem.FillBehavior = FillBehavior.Stop;
-
-            return collapseDrawerItem.BeginAsync();
+                var storyboard = RemovedStoryboard.Clone();
+                Storyboard.SetTarget(storyboard, this);
+                return storyboard.BeginAsync();
+            }
+            return Task.FromResult(true);
         }
 
-        private Task ExpandAsync(DependencyObject element)
+        private Task AddedAnimationAsync()
         {
-            DoubleAnimation animation = new DoubleAnimation(0.0, 1.0, new Duration(TimeSpan.FromMilliseconds(320)))
+            if (AddedStoryboard != null)
             {
-                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
-            }; 
-
-            Storyboard expandDrawerItem = new Storyboard();
-            Storyboard.SetTarget(animation, this);
-            Storyboard.SetTargetProperty(animation, new PropertyPath("LayoutTransform.(ScaleTransform.ScaleX)"));
-            expandDrawerItem.Children.Add(animation);
-            expandDrawerItem.FillBehavior = FillBehavior.Stop;
-
-            return expandDrawerItem.BeginAsync();
+                var storyboard = AddedStoryboard.Clone();
+                Storyboard.SetTarget(storyboard, this);
+                return storyboard.BeginAsync();
+            }
+            return Task.FromResult(true);
         }
     }
 }
