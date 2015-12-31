@@ -1,0 +1,30 @@
+﻿<Application x:Class="PrismTest.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PrismTest">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Key="OpenDrawerAnimation" FillBehavior="HoldEnd" BeginTime="0:0:0.33">
+                <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.(ScaleTransform.ScaleX)"
+                                                     From="0.0"
+                                                     To="1.0"
+                                                     Duration="0:0:0.32">
+                    <DoubleAnimation.EasingFunction>
+                        <QuadraticEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+
+            <Storyboard x:Key="CloseDrawerAnimation" FillBehavior="HoldEnd">
+                <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.(ScaleTransform.ScaleX)"
+                                                     From="1.0"
+                                                     To="0.0"
+                                                     Duration="0:0:0.32">
+                    <DoubleAnimation.EasingFunction>
+                        <QuadraticEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
