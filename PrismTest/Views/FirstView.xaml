@@ -9,36 +9,8 @@
              mc:Ignorable="d" 
              Background="White">
     <UserControl.LayoutTransform>
-        <ScaleTransform ScaleX="0" />
+        <ScaleTransform />
     </UserControl.LayoutTransform>
-    <UserControl.Style>
-        <Style>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <DataTrigger.EnterActions>
-                        <!--<BeginStoryboard>
-                            <Storyboard>
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
-                                    <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" />
-                                </ObjectAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>-->
-                        <BeginStoryboard Storyboard="{StaticResource OpenDrawerAnimation}" />
-                    </DataTrigger.EnterActions>
-                    <DataTrigger.ExitActions>
-                        <BeginStoryboard Storyboard="{StaticResource CloseDrawerAnimation}" />
-                        <!--<BeginStoryboard>
-                            <Storyboard>
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
-                                    <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" />
-                                </ObjectAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>-->
-                    </DataTrigger.ExitActions>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Style>
     <StackPanel Width="250">
         <TextBlock Text="FirstView" />
         <Button Command="{Binding GoSecondCommand}" Content="Go to 2nd" Margin="20" />

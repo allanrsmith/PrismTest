@@ -7,7 +7,7 @@ using Prism;
 
 namespace PrismTest.ViewModels
 {
-    public class SecondViewModel : BindableBase, INavigationAware, IActiveAware
+    public class SecondViewModel : BindableBase, INavigationAware
     {
         public SecondViewModel(IRegionManager regionManager)
         {
@@ -18,17 +18,7 @@ namespace PrismTest.ViewModels
 
         IRegionManager _regionManager;
 
-        public event EventHandler IsActiveChanged;
-
         public ICommand GoBackCommand { get; set; }
-
-        bool _isActive;
-
-        public bool IsActive
-        {
-            get { return _isActive; }
-            set { SetProperty(ref _isActive, value); }
-        }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {

@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace PrismTest.ViewModels
 {
-    public class FirstViewModel : BindableBase, INavigationAware, IActiveAware
+    public class FirstViewModel : BindableBase, INavigationAware
     {
         public FirstViewModel(IRegionManager regionManager)
         {
@@ -20,16 +20,6 @@ namespace PrismTest.ViewModels
 
         public ICommand GoSecondCommand { get; set; }
 
-        public event EventHandler IsActiveChanged;
-
-        bool _isActive;
-
-        public bool IsActive
-        {
-            get { return _isActive; }
-            set { SetProperty(ref _isActive, value); }
-        }
-
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return true;
@@ -37,12 +27,12 @@ namespace PrismTest.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            
+
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            
+
         }
 
         private void GoSecond()

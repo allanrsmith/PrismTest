@@ -12,9 +12,13 @@
         Background="LightGray">
     <Grid>
         <Button Command="{Binding NavigateCommand}" Content="First" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" />
-        <ItemsControl prism:RegionManager.RegionName="DrawerRegion"
+        <controls:AnimatedContentControl prism:RegionManager.RegionName="DrawerRegion"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"/>
+                        VerticalContentAlignment="Stretch">
+            <controls:AnimatedContentControl.LayoutTransform>
+                <ScaleTransform />
+            </controls:AnimatedContentControl.LayoutTransform>
+        </controls:AnimatedContentControl>
     </Grid>
 </Window>

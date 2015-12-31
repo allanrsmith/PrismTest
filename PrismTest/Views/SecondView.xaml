@@ -10,36 +10,8 @@
              d:DesignHeight="300" d:DesignWidth="300"
              Background="Cyan">
     <UserControl.LayoutTransform>
-        <ScaleTransform ScaleX="0"/>
+        <ScaleTransform />
     </UserControl.LayoutTransform>
-    <UserControl.Style>
-        <Style>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsActive}" Value="True">
-                    <DataTrigger.EnterActions>
-                        <BeginStoryboard Storyboard="{StaticResource OpenDrawerAnimation}" />
-                        <!--<BeginStoryboard>
-                            <Storyboard>
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
-                                    <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" />
-                                </ObjectAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>-->
-                    </DataTrigger.EnterActions>
-                    <DataTrigger.ExitActions>
-                        <BeginStoryboard Storyboard="{StaticResource CloseDrawerAnimation}" />
-                        <!--<BeginStoryboard>
-                            <Storyboard>
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
-                                    <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" />
-                                </ObjectAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>-->
-                    </DataTrigger.ExitActions>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Style>
     <StackPanel Width="300">
         <TextBlock Text="SecondView" HorizontalAlignment="Center" />
         <Button Command="{Binding GoBackCommand}" Content="GoBack" Margin="20" />

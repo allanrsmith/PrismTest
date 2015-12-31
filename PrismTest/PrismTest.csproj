@@ -84,8 +84,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\SingleActiveItemsControlRegionAdapter.cs" />
+    <Compile Include="Controls\AnimatedContentControl.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="StoryboardExtensions.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\SecondViewModel.cs" />
     <Compile Include="Views\FirstView.xaml.cs">
